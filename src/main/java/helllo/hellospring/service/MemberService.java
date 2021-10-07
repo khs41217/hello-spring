@@ -1,14 +1,18 @@
-package service;
+package helllo.hellospring.service;
 
 import helllo.hellospring.domain.Member;
 import helllo.hellospring.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
 
+
 public class MemberService {
+
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
