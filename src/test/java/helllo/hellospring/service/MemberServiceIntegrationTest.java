@@ -1,36 +1,28 @@
-package service;
+package helllo.hellospring.service;
 
 import helllo.hellospring.domain.Member;
-import helllo.hellospring.repository.MemoryMemberRepository;
-import helllo.hellospring.service.MemberService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MemberServiceTest {
 
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
 
-    @BeforeEach
-    public void beforeEach(){
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-    @AfterEach
-    public void afterEach(){
-        memberRepository.clearStore();
-    }
+    @Autowired MemberService memberService;
+
 
     @Test
-    void join() {
+    void 회원가입() {
 
         //given  상황
         Member member = new Member();
-        member.setName("hello");
+        member.setName("spring");
 
         //when  이것으로 실행 했을때
         Long saveId = memberService.join(member);

@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+
 @Controller
+
+
 public class MemberController {
 
     private MemberService memberService;
+
 
     @Autowired
     public MemberController(MemberService memberService) {
@@ -33,7 +37,6 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/";
-
     }
 
     @GetMapping("/members")
@@ -43,4 +46,5 @@ public class MemberController {
 
         return "members/memberList";
     }
+
 }
