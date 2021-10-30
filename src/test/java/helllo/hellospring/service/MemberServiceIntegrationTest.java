@@ -1,6 +1,7 @@
 package helllo.hellospring.service;
 
 import helllo.hellospring.domain.Member;
+import helllo.hellospring.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MemberServiceIntegrationTest {
 
     @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
 
     @Test
@@ -22,7 +24,7 @@ class MemberServiceIntegrationTest {
 
         //given  상황
         Member member = new Member();
-        member.setName("spring");
+        member.setName("Spring99");
 
         //when  이것으로 실행 했을때
         Long saveId = memberService.join(member);
@@ -35,10 +37,10 @@ class MemberServiceIntegrationTest {
     @Test
     public void 중복_회원_예외() {
         Member member1 = new Member();
-        member1.setName("spring");
+        member1.setName("Spring2");
 
         Member member2 = new Member();
-        member2.setName("spring");
+        member2.setName("Spring2");
 
         memberService.join(member1);
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));

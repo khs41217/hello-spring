@@ -3,11 +3,12 @@ package helllo.hellospring.service;
 import helllo.hellospring.domain.Member;
 import helllo.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -21,11 +22,10 @@ public class MemberService {
      *회원가입
      */
     public Long join(Member member) {
-        //같은 이름이 있는 중복 회원X
-        validateDuplicateMember(member);    //중복회원 검증
+            validateDuplicateMember(member);    //중복회원 검증
 
-        memberRepository.save(member);
-        return member.getId();
+            memberRepository.save(member);
+            return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
@@ -40,7 +40,7 @@ public class MemberService {
      */
 
     public List<Member> findMembers(){
-        return memberRepository.findAll();
+            return memberRepository.findAll();
     }
 
     public Optional<Member> findOne(Long memberId){
